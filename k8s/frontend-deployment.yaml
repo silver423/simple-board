@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: eun945202/simple-board-frontend:main-19703110c3dc006f38372c02190320acf7f9fc8f
+        image: eun945202/simple-board-frontend:main-4291fd056f00e64b3d75b188481817a077a308b5
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 80
