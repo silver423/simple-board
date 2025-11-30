@@ -1,0 +1,60 @@
+# Default values for simple-board Helm chart
+
+backend:
+  replicaCount: 2
+  image:
+    repository: simple-board-backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: ClusterIP
+    port: 5000
+  resources:
+    requests:
+      memory: "128Mi"
+      cpu: "100m"
+    limits:
+      memory: "256Mi"
+      cpu: "200m"
+  env:
+    FLASK_ENV: production
+
+frontend:
+  replicaCount: 2
+  image:
+    repository: simple-board-frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    type: LoadBalancer
+    port: 80
+    nodePort: 30080
+  resources:
+    requests:
+      memory: "64Mi"
+      cpu: "50m"
+    limits:
+      memory: "128Mi"
+      cpu: "100m"
+
+persistence:
+  enabled: true
+  storageClass: standard
+  accessMode: ReadWriteOnce
+  size: 1Gi
+
+ingress:
+  enabled: true
+  className: nginx
+  host: simple-board.local
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+
+monitoring:
+  enabled: true
+  prometheus:
+    enabled: true
+    port: 9090
+  grafana:
+    enabled: true
+    port: 3000
