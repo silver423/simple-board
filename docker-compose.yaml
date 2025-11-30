@@ -1,0 +1,37 @@
+version: '3.8'
+services:
+  # 백엔드 서비스 (API 및 메트릭 제공)
+  backend-service:
+    image: simple-board-backend:latest
+    container_name: backend-service
+    build: 
+      context: ./backend
+    ports:
+      # 호스트 PC의 8080 포트를 컨테이너의 5000 포트(Flask)로 매핑
+      - "8080:5000"
+    volumes:  
+      - board_db:/app/data
+    networks:
+      - board_network
+
+  # 프론트엔드 서비스 (Nginx를 통해 정적 파일 제공 및 API 프록시)
+  frontend-service:
+    image: simple-board-frontend:latest
+    container_name: frontend-service
+    build: 
+      context: ./frontend
+    ports:
+      # 호스트 PC의 3000 포트를 컨테이너의 80 포트(Nginx)로 매핑
+      - "3000:80"
+    # 백엔드 서비스보다 나중에 시작되도록 종속성 설정
+    depends_on:
+      - backend-service
+    networks:
+      - board_network
+
+networks:
+  board_network:
+    driver: bridge
+
+volumes:  # 볼륨 정의 (호스트 PC에 영구 저장될 공간)
+  board_db:
