@@ -77,7 +77,7 @@ jobs:
     - name: Checkout GitOps repository
       uses: actions/checkout@v3
       with:
-        repository: ${{ secrets.GITOPS_REPO }} # secrets
+        repository: ${{ secrets.GITOPS_REPO }} 
         token: ${{ secrets.GITOPS_TOKEN }}
         path: gitops
 
