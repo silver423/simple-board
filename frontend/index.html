@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Board</title>
+    <meta charset="UTF-8">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .post-item { border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; }
+        .form-container input { padding: 5px; margin-right: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Simple Board</h1>
+    
+    <hr>
+    
+    <h2>새 게시글 작성</h2>
+    <div class="form-container">
+        <div style="margin-bottom: 10px;">
+            <input type="text" id="new-title" placeholder="제목" required style="width: 400px; padding: 8px;">
+        </div>
+        <div style="margin-bottom: 10px;">
+            <textarea id="new-content" placeholder="내용" required style="width: 400px; height: 100px; padding: 8px; resize: vertical; box-sizing: border-box;"></textarea>
+        </div>
+        <button onclick="handleCreate()">작성</button>
+    </div>
+
+    <hr>
+
+    <h2>게시글 목록</h2>
+    <div id="post-list">
+        <p>게시글을 로드 중...</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
