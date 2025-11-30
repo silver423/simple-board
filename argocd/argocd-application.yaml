@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: simple-board
+  namespace: argocd
+spec:
+  project: default
+  
+  source:
+    repoURL: https://github.com/yourusername/simple-board-gitops
+    # 실제 GitOps 저장소 URL로 변경 (CI/CD 파이프라인에서 업데이트하는 Kubernetes manifest가 있는 저장소)
+    targetRevision: HEAD
+    path: k8s
+  
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
