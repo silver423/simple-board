@@ -10,8 +10,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 애플리케이션 파일 복사
 COPY app.py .
 
-# SQLite DB 파일이 저장되는 디렉토리를 VOLUME으로 선언
-# Docker나 Kubernetes가 이 경로를 호스트 시스템 또는 영구 저장소에 마운트할 수 있게 함
 VOLUME /app/data
 
 EXPOSE 5000
