@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: eun945202/simple-board-backend:main-200330bc1184ab366cb398af6c3017307f9da80a
+        image: eun945202/simple-board-backend:main-22ca1a674f554662c4b48f8b41b68bcfb7236821
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 5000
