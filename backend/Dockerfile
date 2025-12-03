@@ -10,6 +10,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 애플리케이션 파일 복사
 COPY app.py .
 
+# mount path
 VOLUME /app/data
 
 EXPOSE 5000
